@@ -76,6 +76,7 @@ public class AddBookAction extends ActionSupport {
 	      if (isbn == null || isbn.trim().equals(""))
 	      {
 	         addFieldError("isbn","The genre is required");
+	         System.out.println("Comment");
 	      }
 	
 	      
@@ -88,7 +89,7 @@ public class AddBookAction extends ActionSupport {
    conn = ConnectionClass.getConnxn();
    
    String sql = "INSERT INTO BOOKS VALUES ('"+isbn+"' , '"+author+"', '"+genre+"' , '"+bookname+"' )"; 
-  
+   System.out.println("Comment");
    Statement ps = conn.createStatement();
    System.out.println("QUERy:::: "+sql);
   int r=ps.executeUpdate(sql);
