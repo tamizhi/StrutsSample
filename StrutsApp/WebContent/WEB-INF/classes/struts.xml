@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+   <struts>
+  <!--       <form>
+        <form-bean name="ViewForm" type="struts.example.action.ViewForm"></form-bean>
+    </bean>  -->
+   
+       <constant name="struts.devMode" value="true" />
+        <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+        <constant name="struts.mapper.action.prefix.enabled" value="true"/>
+        
+       <package name="strutsapp" extends="struts-default">
+         <!--   <action name="firstclass" method="execute" class="struts.sample.action.FirstClass">
+               <result name="success">/resultFile.jsp</result>
+               <result name="error">/errorFile.jsp</result>
+           </action> -->
+                 <!--  <action name="sampleclass" method="execute" class="struts.sample.action.SampleClass">
+               <result name="success">/resultFile.jsp</result>
+               <result name="error">/errorFile.jsp</result>
+           </action> -->
+          <action name="*login" method="{1}" class="struts.sample.action.LoginAction">
+               <result name="success">/resultFile.jsp</result>
+               <result name="error">/errorFile.jsp</result>
+           </action>
+             <action name="addbook" method="execute" class="struts.sample.action.AddBookAction">
+                     <result name="input">/addbook.jsp</result>
+               <result name="success">/resultFile.jsp</result>
+               <result name="error">/errorFile.jsp</result>
+           </action>
+      
+           <action name="viewbook" method="execute" class="struts.sample.action.ViewAction">                     
+               <result name="success">/updatebooks.jsp</result>
+               <result name="error">/errorFile.jsp</result>
+           </action>
+             <action name="*book" method="{1}" class="struts.sample.action.UpdateAction">                     
+               <result name="success">/updatebooks.jsp</result>
+               <result name="edit">/updatebooks.jsp</result>
+               <result name="delete">/updatebooks.jsp</result>
+               
+               <result name="error">/errorFile.jsp</result>
+           </action>
+             
+       </package>
+   </struts>
