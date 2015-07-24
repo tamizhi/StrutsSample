@@ -11,46 +11,31 @@
    
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script>
-  $(function confirmDelete() { 
- 
-  $('#dialog-confirm').css('display','block');
-$('#dialog-confirm').dialog({
-    resizable: false,
-    height:140,
+ <script>
+  function setRemoveIndex(val,bookname)
+   {    
+       alert("Delete Book , ?? "+bookname);
     
-    modal: true,
-    autoOpen: false,
-    buttons: {
-      "Delete book": function() {
-        $( this ).dialog( "close" );
-      },
-      Cancel: function() {
-        $( this ).dialog( "close" );
-      }
-    }
-  });
-  });
- </script>
-  <%--  <script>
-  $(function() {
-    $( "#dialog-confirm" ).dialog({
-      resizable: false,
-      height:140,
+       document.getElementById("removeIndex").value=val;
+       
+       document.myform.action="deletebook.action";
+       document.myform.submit();
+        return true;
+   }
+  function setEditBook(isbn,bookname,author,genre)
+  {    
       
-      modal: true,
-      autoOpen: false,
-      buttons: {
-        "Delete book": function() {
-          $( this ).dialog( "close" );
-        },
-        Cancel: function() {
-          $( this ).dialog( "close" );
-        }
-      }
-    });
-  });
-  </script> --%>
+	  alert("Edit Book , ?? "+bookname);
+      document.getElementById("isbn").value=isbn+"";
+      document.getElementById("bookname").value=bookname+"";
+      document.getElementById("author").value=author+"";
+      document.getElementById("genre").value=genre+"";
+       
+      document.myform.action="editbook.action";
+      document.myform.submit();
+       return true;
+  }
+</script>
 </head>
 <body>
 <a href="addbook.jsp">Add Books</a><br/>
@@ -59,9 +44,7 @@ $('#dialog-confirm').dialog({
 		<h5>NO BOOKS FOUND</h5>
 	</s:if>
 	<s:else>
-	<div id="dialog-confirm" style="display : none;" title="Delete Book?">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?</p>
-</div>
+	 
 	
 		<table>
 			<tr>
@@ -74,15 +57,20 @@ $('#dialog-confirm').dialog({
 			</tr>
 			
 			<s:form action="book">
-				<s:iterator status="stat" value="booksList" var="book">
+			<s:hidden name="removeIndex" id="removeIndex"/>
+			<s:hidden name="isbn" id="isbn"/>
+			<s:hidden name="bookname" id="bookname"/>
+			<s:hidden name="author" id="author"/>
+			<s:hidden name="genre" id="genre"/>
+				<s:iterator status="stat" value="booksList" var="book" status="status">
 					<tr>
 						<td><s:textfield value="%{#book.bookname}"  name="mb.bookname" /></td>
 						<td><s:textfield value="%{#book.author}"  name="mb.author" /></td>
 						<td><s:textfield  value="%{#book.isbn}" name="mb.isbn" readonly="true" /></td>
 						<td><s:textfield value="%{#book.genre}" name="mb.genre" /></td>
-						<td><s:submit value="Editing" method="editbook" name="editButton"/>
+						<td><s:submit value="Editing" method="editbook" name="editButton"  onclick="return setEditBook('%{#book.isbn}','mb.bookname','%{#book.author}','%{#book.genre}')"/>
 						</td>
-						<td><s:submit  value="Deleting" method="deletebook" name="deleteButton"/><div id="myDiv"><h2> </h2></div></td>
+						<td><s:submit  value="Deleting" method="deletebook" name="deleteButton"  onclick="return setRemoveIndex('%{#status.index}','%{#book.bookname}')"/> </td>
 						
 					</tr>
 				</s:iterator>
