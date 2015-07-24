@@ -76,7 +76,7 @@ public class AddBookAction extends ActionSupport {
 	      if (isbn == null || isbn.trim().equals(""))
 	      {
 	         addFieldError("isbn","The genre is required");
-	         System.out.println("Comment");
+	       //  System.out.println("Comment");
 	      }
 	
 	      
