@@ -9,7 +9,7 @@
 <body>
    Hello ,<s:property value="username"/>
 <a href="addbook.jsp">Add Books</a><br/>
-<a href="<s:url action="viewbook"/>">View Books</a>
+<a href="<s:url action="book"/>">View Books</a>
  
  
 </body>
