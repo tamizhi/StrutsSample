@@ -8,7 +8,7 @@
 <title>Add Books</title>
 </head>
 <body>
-<a href="<s:url action="viewbook"/>">View Books</a>
+<a href="<s:url action="book"/>">View Books</a>
 <a href="loginForm.jsp">Logout</a><br/>
 <s:form action="addbook" method="post" >
 <center><table border="0">
